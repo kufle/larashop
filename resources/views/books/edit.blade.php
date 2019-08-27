@@ -21,9 +21,13 @@
                 <form action="{{route('books.update',['id'=>$book->id])}}" enctype="multipart/form-data" method="POST">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
+                    
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input type="text" class="form-control" name="title" placeholder="Title" value="{{$book->title}}">
+                        <input type="text" class="form-control {{$errors->first('title') ? 'is-invalid' : ''}}" name="title" placeholder="Title" value="{{$book->title}}">
+                        <div class="invalid-feedback">
+                            {{$errors->first('title')}}
+                        </div>
                     </div>
 
                     @if($book->cover)
@@ -35,12 +39,18 @@
                     <small class="text-muted">*Kosongkan jika tidak mengubah gambar</small>
                     <div class="form-group">
                         <label for="cover">Cover</label>
-                        <input type="file" class="form-control" name="cover">
+                        <input type="file" class="form-control {{$errors->first('cover') ? 'is-invalid' : ''}}" name="cover">
+                        <div class="invalid-feedback">
+                            {{$errors->first('cover')}}
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="title">Description</label>
-                        <textarea name="description" class="form-control" placholder="Give a description about this Book">{{$book->description}}</textarea>
+                        <textarea name="description" class="form-control {{$errors->first('description') ? 'is-invalid' : ''}}" placholder="Give a description about this Book">{{$book->description}}</textarea>
+                        <div class="invalid-feedback">
+                            {{$errors->first('description')}}
+                        </div>
                     </div>
                     
                     <div class="form-group">
@@ -52,22 +62,34 @@
 
                     <div class="form-group">
                         <label for="stock">Stock</label>
-                        <input type="number" class="form-control" name="stock" min="0" value="{{$book->stock}}">
+                        <input type="number" class="form-control {{$errors->first('stock') ? 'is-invalid' : ''}}" name="stock" min="0" value="{{$book->stock}}">
+                        <div class="invalid-feedback">
+                            {{$errors->first('stock')}}
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="author">Author</label>
-                        <input type="text" class="form-control" name="author" placeholder="Book Author" value="{{$book->author}}">
+                        <input type="text" class="form-control {{$errors->first('author') ? 'is-invalid' : ''}}" name="author" placeholder="Book Author" value="{{$book->author}}">
+                        <div class="invalid-feedback">
+                            {{$errors->first('author')}}
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="publisher">Publisher</label>
-                        <input type="text" class="form-control" name="publisher" placeholder="Publisher" value="{{$book->publisher}}">
+                        <input type="text" class="form-control {{$errors->first('publisher') ? 'is-invalid' : ''}}" name="publisher" placeholder="Publisher" value="{{$book->publisher}}">
+                        <div class="invalid-feedback">
+                            {{$errors->first('publisher')}}
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="price">Price</label>
-                        <input type="text" class="form-control" name="price" placeholder="Price" value="{{$book->price}}">
+                        <input type="text" class="form-control {{$errors->first('price') ? 'is-invalid' : ''}}" name="price" placeholder="Price" value="{{$book->price}}">
+                        <div class="invalid-feedback">
+                            {{$errors->first('price')}}
+                        </div>
                     </div>
 
                     <div class="form-group">

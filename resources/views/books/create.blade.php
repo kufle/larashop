@@ -22,17 +22,26 @@
                     @csrf
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input type="text" class="form-control" name="title" placeholder="Title">
+                        <input type="text" class="form-control {{$errors->first('title') ? 'is-invalid' : ''}}" name="title" placeholder="Title" value="{{old('title')}}">
+                        <div class="invalid-feedback">
+                            {{$errors->first('title')}}
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="cover">Cover</label>
-                        <input type="file" class="form-control" name="cover">
+                        <input type="file" class="form-control {{$errors->first('cover') ? 'is-invalid' : ''}}" name="cover">
+                        <div class="invalid-feedback">
+                            {{$errors->first('cover')}}
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="title">Description</label>
-                        <textarea name="description" class="form-control" placholder="Give a description about this Book"></textarea>
+                        <textarea name="description" class="form-control {{$errors->first('description') ? 'is-invalid' : ''}}" placholder="Give a description about this Book">{{old('description')}}</textarea>
+                        <div class="invalid-feedback">
+                            {{$errors->first('description')}}
+                        </div>
                     </div>
                     
                     <div class="form-group">
@@ -44,22 +53,34 @@
 
                     <div class="form-group">
                         <label for="stock">Stock</label>
-                        <input type="number" class="form-control" name="stock" min="0" value="0">
+                        <input type="number" class="form-control {{$errors->first('stock') ? 'is-invalid' : ''}}" name="stock" min="0" value="0">
+                        <div class="invalid-feedback">
+                            {{$errors->first('stock')}}
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="author">Author</label>
-                        <input type="text" class="form-control" name="author" placeholder="Book Author">
+                        <input type="text" class="form-control {{$errors->first('author') ? 'is-invalid' : ''}}" name="author" placeholder="Book Author" value="{{old('author')}}">
+                        <div class="invalid-feedback">
+                            {{$errors->first('author')}}
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="publisher">Publisher</label>
-                        <input type="text" class="form-control" name="publisher" placeholder="Publisher">
+                        <input type="text" class="form-control {{$errors->first('publisher') ? 'is-invalid' : ''}}" name="publisher" placeholder="Publisher" value="{{old('publisher')}}">
+                        <div class="invalid-feedback">
+                            {{$errors->first('publisher')}}
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="price">Price</label>
-                        <input type="text" class="form-control" name="price" placeholder="Price">
+                        <input type="text" class="form-control {{$errors->first('price') ? 'is-invalid' : ''}}" name="price" placeholder="Price">
+                        <div class="invalid-feedback">
+                            {{$errors->first('price')}}
+                        </div>
                     </div>
 
                     <button class="btn btn-primary" name="save_action" value="PUBLISH">Publish</button>
