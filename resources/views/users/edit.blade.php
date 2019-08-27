@@ -54,7 +54,7 @@
 
                     <div class="form-group">
                         <label>Phone Number</label>
-                        <input type="text" class="form-control {{$errors->first('phone') ? 'is-invalid' : ''}}" name="phone" id="phone" placeholder="Phone Number" value="{{old('phone) ? old('phone) : $user->phone}}">
+                        <input type="text" class="form-control {{$errors->first('phone') ? 'is-invalid' : ''}}" name="phone" id="phone" placeholder="Phone Number" value="{{old('phone') ? old('phone') : $user->phone}}">
                         <div class="invalid-feedback">
                             {{$errors->first('phone')}}
                         </div>
@@ -62,7 +62,7 @@
 
                     <div class="form-group">
                         <label>Address</label>
-                        <textarea class="form-control {{$errors->first('address') ? 'is-invalid' : ''}}" name="address" id="address">{{old('address') : old('address') : $user->address}}</textarea>
+                        <textarea class="form-control {{$errors->first('address') ? 'is-invalid' : ''}}" name="address" id="address">{{old('address') ? old('address') : $user->address}}</textarea>
                         <div class="invalid-feedback">
                             {{$errors->first('address')}}
                         </div>
@@ -82,17 +82,26 @@
 
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="example@mail.com" value="{{$user->email}}">
+                        <input type="email" class="form-control {{$errors->first('email') ? 'is-invalid' : ''}}" name="email" id="email" placeholder="example@mail.com" value="{{old('email') ? old('email') : $user->email}}">
+                        <div class="invalid-feedback">
+                            {{$errors->first('email')}}
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" class="form-control" name="password" id="password">
+                        <input type="password" class="form-control {{$errors->first('password') ? 'is-invalid' : ''}}" name="password" id="password">
+                        <div class="invalid-feedback">
+                            {{$errors->first('password')}}
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label>Password Confirmation</label>
-                        <input type="password" class="form-control" name="password_confirmation" id="password_confirmation">
+                        <input type="password" class="form-control {{$errors->first('password_confirmation') ? 'is-invalid' : ''}}" name="password_confirmation" id="password_confirmation">
+                        <div class="invalid-feedback">
+                            {{$errors->first('password_confirmation')}}
+                        </div>
                     </div>
 
                     <div class="form-group">

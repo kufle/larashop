@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Validation\Rule;
+
 class CategoryController extends Controller
 {
     /**
@@ -41,7 +43,12 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        \Validator::make($request->all(),[
+            "name" => "required|min:3|max:20",
+            "image" => "required",
+        ])->validate();
+
         $new_category = new \App\Category;
         $new_category->name = $request->get('name');
 
@@ -94,10 +101,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {   
+        $category_update = \App\Category::findOrFail($id);
+        
+        \Validator::make($request->all(),[
+            "name" => "required|min:3|max:20",
+            "slug" => ["required",Rule::unique("categories")->ignore($category_update->slug,"slug")]
+        ])->validate();
         $name = $request->get('name');
         $slug = $request->get('slug');
-        $category_update = \App\Category::findOrFail($id);
-
+        
         $category_update->name = $name;
         $category_update->slug = str_slug($slug,'-');
         if($request->file('image')){
@@ -108,7 +120,7 @@ class CategoryController extends Controller
             $category_update->image = $file;
         }
 
-        $category_update->update_by = \Auth::user()->id;
+        $category_update->updated_by = \Auth::user()->id;
         $category_update->save();
 
         return redirect()->route('categories.edit',['id'=>$id])->with('status','Category Successfully Update');

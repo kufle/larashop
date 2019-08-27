@@ -23,12 +23,18 @@
 
                     <div class="form-group">
                         <label for="category">Category</label>
-                        <input type="text" class="form-control" name="name" value="{{$category->name}}">
+                        <input type="text" class="form-control {{$errors->first('name') ? 'is-invalid' : ''}}" name="name" value="{{old('name') ? old('name') : $category->name}}">
+                        <div class="invalid-feedback">
+                            {{$errors->first('name')}}
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="slug">Slug</label>
-                        <input type="text" class="form-control" name="slug" value="{{$category->slug}}">
+                        <input type="text" class="form-control {{$errors->first('slug') ? 'is-invalid' : ''}}" name="slug" value="{{old('slug') ? old('slug') : $category->slug}}">
+                        <div class="invalid-feedback">
+                            {{$errors->first('slug')}}
+                        </div>
                     </div>
                     
                     @if($category->image)
@@ -40,7 +46,10 @@
                     <small class="text-muted">*kosongkan jika tidak merubah image</small>
                     <div class="form-group">
                         <label for="image">Image</label>
-                        <input type="file" class="form-control" name="image">
+                        <input type="file" class="form-control {{$errors->first('image') ? 'is-invalid' : ''}}" name="image">
+                        <div class="invalid-feedback">
+                            {{$errors->first('image')}}
+                        </div>
                     </div>
 
                     <input type="submit" class="btn btn-primary" value="Update">

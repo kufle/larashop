@@ -125,8 +125,9 @@ class UserController extends Controller
             "roles" => "required",
             "address" => "required|min:20|max:200",
             "phone" => "required|digits_between:10,12",
+            "password_confirmation" => "same:password"
         ])->validate();
-        
+
         $user = \App\User::findOrFail($id);
 
         $user->name = $request->get('name');
@@ -134,6 +135,11 @@ class UserController extends Controller
         $user->address = $request->get('address');
         $user->phone = $request->get('phone');
         $user->status = $request->get('status');
+        //$user->email = $request->get('email');
+        if($request->get('password') && ($request->get('password') !=''))
+        {
+            $user->password = \Hash::make($request->get('password'));
+        }
 
         if($request->file("avatar")){
             if(file_exists(storage_path('app/public'.$user->avatar))){
